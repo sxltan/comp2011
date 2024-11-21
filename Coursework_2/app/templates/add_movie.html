@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+
+{% block title %}Add Movie{% endblock %}
+
+{% block content %}
+
+<!-- Add Movie Form -->
+<div class="container mt-4">
+    <h1 class="mb-4 text-center">Add a New Movie</h1>
+    <form method="POST" class="needs-validation mx-auto" novalidate enctype="multipart/form-data" style="width: 75%; max-width: 600px;">
+        {{ form.hidden_tag() }}
+
+        <!-- Movie Title -->
+        <div class="form-group">
+            {{ form.title.label }}
+            {% if prompt_tmdb %}
+                {{ form.title(class="form-control", placeholder="Enter the movie title", disabled=True) }}
+            {% else %}
+                {{ form.title(class="form-control", placeholder="Enter the movie title") }}
+            {% endif %}
+            {% if form.title.errors %}
+            <div class="text-danger">{{ form.title.errors[0] }}</div>
+            {% endif %}
+        </div>
+
+        <!-- Movie Genre -->
+        <div class="form-group">
+            {{ form.genre.label }}
+            <select id="genre" name="genre" class="form-control" required {% if prompt_tmdb %}disabled{% endif %}>
+                <option value="">Select Genre</option>
+                <option value="Action" {% if form.genre.data=="Action" %}selected{% endif %}>Action</option>
+                <option value="Drama" {% if form.genre.data=="Drama" %}selected{% endif %}>Drama</option>
+                <option value="Comedy" {% if form.genre.data=="Comedy" %}selected{% endif %}>Comedy</option>
+                <option value="Thriller" {% if form.genre.data=="Thriller" %}selected{% endif %}>Thriller</option>
+                <option value="Romance" {% if form.genre.data=="Romance" %}selected{% endif %}>Romance</option>
+                <option value="Horror" {% if form.genre.data=="Horror" %}selected{% endif %}>Horror</option>
+            </select>
+            {% if form.genre.errors %}
+            <div class="text-danger">{{ form.genre.errors[0] }}</div>
+            {% endif %}
+        </div>
+
+        <!-- Watch Date -->
+        <div class="form-group">
+            {{ form.watch_date.label }}
+            {% if prompt_tmdb %}
+                {{ form.watch_date(class="form-control", placeholder="Select the watch date", disabled=True) }}
+            {% else %}
+                {{ form.watch_date(class="form-control", placeholder="Select the watch date") }}
+            {% endif %}
+            {% if form.watch_date.errors %}
+            <div class="text-danger">{{ form.watch_date.errors[0] }}</div>
+            {% endif %}
+        </div>
+
+        <!-- Rating -->
+        <div class="form-group">
+            <label for="rating">Rating</label>
+            <select id="rating" name="rating" class="form-control" required {% if prompt_tmdb %}disabled{% endif %}>
+                <option value="">Select Rating</option>
+                <option value="1" {% if form.rating.data==1 %}selected{% endif %}>1</option>
+                <option value="2" {% if form.rating.data==2 %}selected{% endif %}>2</option>
+                <option value="3" {% if form.rating.data==3 %}selected{% endif %}>3</option>
+                <option value="4" {% if form.rating.data==4 %}selected{% endif %}>4</option>
+                <option value="5" {% if form.rating.data==5 %}selected{% endif %}>5</option>
+            </select>
+            {% if form.rating.errors %}
+            <div class="text-danger">{{ form.rating.errors[0] }}</div>
+            {% endif %}
+        </div>
+
+        <!-- Review -->
+        <div class="form-group">
+            {{ form.review.label }}
+            {% if prompt_tmdb %}
+                {{ form.review(class="form-control", placeholder="Write your review", disabled=True) }}
+            {% else %}
+                {{ form.review(class="form-control", placeholder="Write your review") }}
+            {% endif %}
+            {% if form.review.errors %}
+            <div class="text-danger">{{ form.review.errors[0] }}</div>
+            {% endif %}
+        </div>
+
+        <!-- Reflections -->
+        <div class="form-group">
+            {{ form.reflections.label }}
+            {% if prompt_tmdb %}
+                {{ form.reflections(class="form-control", placeholder="Share your reflections or lessons learned", disabled=True) }}
+            {% else %}
+                {{ form.reflections(class="form-control", placeholder="Share your reflections or lessons learned") }}
+            {% endif %}
+            {% if form.reflections.errors %}
+            <div class="text-danger">{{ form.reflections.errors[0] }}</div>
+            {% endif %}
+        </div>
+
+        <!-- Poster Upload (Custom Poster Image) -->
+        {% if prompt_tmdb %}
+        <div class="form-group">
+            <label for="poster_image">Upload Movie Poster Image</label>
+            <input type="file" name="poster_image" class="form-control" required>
+        </div>
+        {% endif %}
+
+        <!-- Watched Checkbox -->
+        <div class="form-group text-center">
+            <div class="form-check">
+                {{ form.watched(class="form-check-input") }}
+                {{ form.watched.label(class="form-check-label") }}
+            </div>
+        </div>
+
+        <!-- Submit and Cancel buttons -->
+        <div class="d-flex flex-column align-items-center gap-3">
+            <button type="submit" class="btn btn-custom-blue">Add Movie</button>
+            <br>
+            <a href="{{ url_for('home') }}" class="btn btn-custom">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

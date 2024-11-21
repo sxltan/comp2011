@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Film Journal{% endblock %}
+
+{% block content %}
+<!-- Welcome Message -->
+<h1 class="text-center mb-4">Welcome, {{ current_user.username }}!</h1> <br>
+
+<!-- Sorting and Search Form -->
+<div class="mb-4 d-flex justify-content-center">
+  <!-- Search Bar -->
+  <div class="form-group mx-2" style="flex: 1; max-width: 300px;">
+      <label for="searchInput" class="text-white mb-1">Search Movies:</label>
+      <input type="text" id="searchInput" class="form-control" placeholder="Search for movies...">
+  </div>
+
+  <!-- Sort By Dropdown and Button -->
+  <div class="form-group mx-2" style="flex: 1; max-width: 300px;">
+      <label for="sort" class="text-white mb-1">Sort By:</label>
+      <div class="d-flex align-items-center">
+          <select name="sort" id="sort" class="form-control mr-2">
+              <option value="None" {% if request.args.get('sort') == 'None' %}selected{% endif %}>None</option>
+              <option value="earliest" {% if request.args.get('sort') == 'earliest' %}selected{% endif %}>Earliest Watch Date</option>
+              <option value="latest" {% if request.args.get('sort') == 'latest' %}selected{% endif %}>Latest Watch Date</option>
+              <option value="rating_desc" {% if request.args.get('sort') == 'rating_desc' %}selected{% endif %}>Rating (High to Low)</option>
+              <option value="rating_asc" {% if request.args.get('sort') == 'rating_asc' %}selected{% endif %}>Rating (Low to High)</option>
+              <option value="title" {% if request.args.get('sort') == 'title' %}selected{% endif %}>Title (A-Z)</option>
+              <option value="title_desc" {% if request.args.get('sort') == 'title_desc' %}selected{% endif %}>Title (Z-A)</option>
+          </select>
+          <button type="submit" class="btn btn-custom ml-2">Sort</button>
+      </div>
+  </div>
+</div>
+
+<!-- Add Movie Button -->
+<div class="text-center mb-4">
+  <a href="{{ url_for('add_movie') }}" class="btn btn-custom-blue">Add New Movie</a>
+</div>
+
+<!-- Movies Grid -->
+{% if movies %}
+<div class="cards-container">
+  {% for movie in movies %}
+  <div class="card shadow-lg">
+    <div class="card-body">
+      <h5 class="card-title font-weight-bold">{{ movie.title }}</h5>
+
+      <!-- Movie Poster -->
+      {% if movie.poster_url %}
+      <a href="{{ movie.tmdb_link }}" target="_blank">
+        <img src="{{ movie.poster_url }}" alt="Poster for {{ movie.title }}" class="movie-poster mb-3" style="width: 100%; height: auto;">
+      </a>
+      {% else %}
+      <img src="/static/default_poster.jpg" alt="No Poster Available" class="movie-poster mb-3" style="width: 100%; height: auto;">
+      {% endif %}
+
+      <p class="card-text"><strong>Genre:</strong> {{ movie.genre }}</p>
+      <p class="card-text"><strong>Watch Date:</strong> {{ movie.watch_date.strftime('%Y-%m-%d') if movie.watch_date else 'N/A' }}</p>
+      <p class="card-text"><strong>Rating:</strong>
+        <div class="star-rating">
+          {% for i in range(1, 6) %}
+          <span class="fa fa-star {% if movie.rating and movie.rating >= i %}checked{% endif %}"></span>
+          {% endfor %}
+        </div>
+      </p>
+      <p class="card-text"><strong>Review:</strong> {{ movie.review }}</p>
+      <p class="card-text"><strong>Reflections:</strong> {{ movie.reflections }}</p>
+      <p class="card-text"><strong>Status:</strong> {{ 'Watched' if movie.watched else 'Unwatched' }}</p>
+      <p class="card-text"><strong>Logged by:</strong> 
+        <a href="{{ url_for('user_profile', user_id=movie.user.id) }}" class="text-info">
+          {{ movie.user.username }}
+        </a>
+      </p>
+    </div>
+
+    <div class="card-footer d-flex justify-content-between">
+      <a href="{{ url_for('edit_movie', movie_id=movie.id) }}" class="btn btn-action btn-edit">Edit</a>
+      <form action="{{ url_for('delete_movie', movie_id=movie.id) }}" method="POST" style="display:inline;">
+          <button type="submit" class="btn btn-action btn-delete" onclick="return confirm('Are you sure?')">Delete</button>
+      </form>
+      {% if movie.watched %}
+      <a href="{{ url_for('mark_unwatched', movie_id=movie.id) }}" class="btn btn-action btn-unwatch">Unwatch</a>
+      {% else %}
+      <a href="{{ url_for('mark_watched', movie_id=movie.id) }}" class="btn btn-action btn-watch">Watch</a>
+      {% endif %}
+    </div>
+
+    <!-- Like Button placed below the card actions -->
+    <div class="card-footer text-center">
+        <form method="POST" action="{{ url_for('toggle_like', movie_id=movie.id) }}" class="like-form" data-movie-id="{{ movie.id }}">
+            <button type="submit" class="btn btn-sm {% if movie.is_liked_by(current_user) %}btn-danger{% else %}btn-outline-danger{% endif %}">
+                <i class="fa fa-heart"></i> <span class="like-count">{{ movie.like_count() }}</span>
+            </button>
+        </form>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% else %}
+<p class="text-center">No movies found. Start by adding a new movie!</p>
+{% endif %}
+
+{% endblock %}

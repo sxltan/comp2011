@@ -1,0 +1,581 @@
+/* Global styles */
+:root {
+    --primary-color: #000000;
+    --secondary-color: #FFFFFF;
+    --highlight-color: #1A73E8; 
+    --card-background: #1A1A1A; 
+    --text-color: #EAEAEA; 
+    --button-hover: #0056b3; 
+    --shadow-color: rgba(0, 0, 0, 0.5); 
+    --gold-color: #FFD700; 
+    --gray-star: #ccc;
+}
+
+@font-face {
+    font-family: 'Aileron Light';
+    src: url('/static/fonts/aileron-light-webfont.woff2') format('woff2'),
+         url('/static/fonts/aileron-light-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'Aileron Light', Arial, sans-serif;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
+}
+
+button {
+    font-family: 'Aileron Light', Arial, sans-serif;
+}
+
+h1 {
+    font-family: 'Aileron Light', Arial, sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+    text-align: center;
+    margin: 40px 0;
+}
+
+h2, h3, h4 {
+    font-family: 'Aileron Light', Arial, sans-serif;
+    font-weight: 600;
+    color: var(--secondary-color);
+}
+
+p {
+    font-family: 'Aileron Light', Arial, sans-serif;
+    color: var(--text-color);
+    line-height: 1.8;
+    text-align: center;
+}
+
+footer {
+    text-align: center;
+    margin-top: 20px;
+    color: var(--text-color);
+    font-size: 0.8rem;
+    opacity: 0.8;
+}
+
+
+
+/* Navbar styles */
+.navbar {
+    background-color: var(--primary-color);
+    border-bottom: 1px solid #aaaaaa;
+    padding: 15px 0;
+    padding-left: 20px;
+}
+
+.navbar a {
+    color: var(--secondary-color);
+    font-weight: bold;
+    margin-right: 20px;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.navbar a:hover {
+    color: var(--highlight-color);
+}
+
+
+/* Button styles */
+.btn {
+    padding: 10px 15px;
+    font-size: 0.9rem;
+    border-radius: 30px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-weight: bold;
+}
+
+.btn-primary {
+    background-color: var(--highlight-color);
+    border: none;
+    color: var(--secondary-color);
+    padding: 12px 20px;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    border-radius: 30px;
+}
+
+.btn-primary:hover {
+    background-color: var(--button-hover);
+    transform: scale(1.05);
+}
+
+.btn-reset {
+    background-color: #ccc;
+    border: none;
+    color: var(--secondary-color);
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-reset:hover {
+    background-color: #999;
+    transform: scale(1.05);
+}
+
+.btn-close {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    opacity: 0.7;
+}
+
+.btn-close:hover {
+    opacity: 1; 
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-inline {
+    margin-bottom: 1rem;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.btn-primary, .btn-danger {
+    flex-grow: 1;
+    padding: 10px 20px;
+}
+
+/* Custom Buttons (Not affecting the Bootstrap ones) - White Button Style */
+.btn-custom {
+    font-family: 'Aileron Light', Arial, sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1rem;
+    padding: 12px 30px;
+    color: #FFFFFF; 
+    background-color: transparent; 
+    border: 2px solid rgba(255, 255, 255, 0.5); 
+    border-radius: 30px;
+    transition: all 0.3s ease; 
+    letter-spacing: 2px;
+    display: inline-block; 
+    text-align: center; 
+    cursor: pointer;
+}
+
+.btn-custom:hover {
+    color: #000000;
+    background-color: #FFFFFF;
+    border-color: #FFFFFF; 
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+}
+
+/* Blue Button Variation */
+.btn-custom-blue {
+    font-family: 'Aileron Light', Arial, sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1rem;
+    padding: 12px 30px;
+    color: #1A73E8;
+    background-color: transparent; 
+    border: 2px solid rgba(26, 115, 232, 0.5); 
+    border-radius: 30px; 
+    transition: all 0.3s ease; 
+    letter-spacing: 2px; 
+    display: inline-block; 
+    text-align: center; 
+    cursor: pointer;
+}
+
+.btn-custom-blue:hover {
+    color: #FFFFFF; 
+    background-color: #1A73E8; 
+    border-color: #1A73E8;
+    transform: scale(1.05);
+    transition: all 0.3s ease; 
+}
+
+/* Red Button Variation */
+.btn-custom-red {
+    font-family: 'Aileron Light', Arial, sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1rem;
+    padding: 12px 30px;
+    color: #DC3545; 
+    background-color: transparent; 
+    border: 2px solid rgba(220, 53, 69, 0.5);
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    letter-spacing: 2px;
+    display: inline-block;
+    text-align: center; 
+    cursor: pointer;
+}
+
+.btn-custom-red:hover {
+    color: #FFFFFF;
+    background-color: #DC3545;
+    border-color: #DC3545;
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+}
+
+/* Action Buttons */
+.btn-action {
+    font-family: 'Aileron Light', Arial, sans-serif;
+    font-weight: bold;
+    font-size: 0.9rem;
+    padding: 8px 20px;
+    border-radius: 30px;
+    border: none;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    letter-spacing: 1px;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+}
+
+/* Edit Button */
+.btn-edit {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.btn-edit:hover {
+    background-color: #0056b3;
+}
+
+/* Delete Button */
+.btn-delete {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.btn-delete:hover {
+    background-color: #a71d2a;
+}
+
+/* Watch Button */
+.btn-watch {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.btn-watch:hover {
+    background-color: #1e7e34;
+}
+
+/* Unwatch Button */
+.btn-unwatch {
+    background-color: #ffc107;
+    color: #000;
+}
+
+.btn-unwatch:hover {
+    background-color: #e0a800;
+}
+
+
+/* Movie Poster */
+.movie-poster {
+    transition: transform 0.3s ease;
+    cursor: pointer; 
+}
+
+.movie-poster:hover {
+    transform: scale(1.05); 
+}
+
+/* Table and Form styles */
+.table {
+    background-color: var(--card-background);
+    border-radius: 8px;
+    box-shadow: 0 8px 16px var(--shadow-color);
+    overflow: hidden;
+    margin: 20px 0;
+    width: 100%;
+}
+
+.table th {
+    background-color: #444444;
+    color: var(--text-color);
+    text-align: center;
+    padding: 15px;
+    white-space: nowrap;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.table td {
+    text-align: center;
+    padding: 12px;
+    color: var(--secondary-color);
+    border-bottom: 1px solid #2E323A;
+}
+
+.table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on mobile devices */
+}
+
+.table-container .table {
+    width: 100%; /* Ensure table occupies the full width of its container */
+}
+
+
+/* Alert styles */
+.alert {
+    margin-top: 10px;
+    border-radius: 5px;
+    color: var(--secondary-color);
+    background-color: var(--highlight-color);
+    padding: 15px;
+    text-align: center;
+}
+
+
+/* Search bar styles */
+#searchInput {
+    background-color: #333333;
+    color: var(--text-color);
+    border: none;
+    border-radius: 5px;
+    padding: 12px;
+    width: 100%;
+    box-shadow: 0 2px 5px var(--shadow-color);
+    transition: box-shadow 0.3s ease;
+    margin-right: 15px;
+}
+
+
+/* Container styles */
+.container {
+    max-width: 1200px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center; 
+}
+
+
+/* Card styles */
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 20px;
+    width: 100%;
+    justify-items: center; 
+}
+
+.card {
+    background-color: #121212; 
+    color: var(--text-color); 
+    border: 2px solid rgba(255, 255, 255, 0.2); 
+    border-radius: 10px; 
+    box-shadow: 0 4px 8px var(--shadow-color); 
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+    width: 100%;
+    max-width: 320px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 6px 15px rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.5); 
+}
+
+.card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--secondary-color);
+    text-align: center;
+    margin-top: -15px;
+    margin-bottom: 20px;
+}
+
+.card-text {
+    font-size: 0.9rem;
+    color: var(--text-color);
+    margin-bottom: 8px;
+    text-align: left;
+}
+
+.card-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-top: 1rem;
+    width: 100%; 
+}
+
+.card-actions .btn {
+    flex-grow: 1; 
+    text-align: center;
+    white-space: nowrap; 
+}
+
+
+/* Like button styles */
+.card .like-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.card .like-btn .fa-heart {
+    font-size: 1.5rem;
+    color: var(--highlight-color);
+}
+
+.card .like-btn span {
+    font-size: 1.2rem;
+    color: var(--text-color);
+}
+
+.like-count {
+    margin-left: 5px; 
+}
+
+
+/* Rating stars styles */
+.star-rating {
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    margin: 10px 0;
+}
+
+.fa-star {
+    font-size: 2rem;
+    color: var(--gray-star); 
+    margin: 0 5px;
+    transition: color 0.2s ease;
+}
+
+.fa-star.checked {
+    color: var(--gold-color);
+}
+
+.fa-star:hover,
+.fa-star:hover ~ .fa-star {
+    color: var(--gray-star);
+}
+
+.star-rating .fa-star {
+    pointer-events: none; 
+}
+
+.star-rating .fa-star.checked {
+    color: #FFD700; 
+}
+
+.star-rating .fa-star:hover {
+    transform: none;
+}
+
+
+/* Search and Sort Styling */
+#searchInput, #sortCriteria {
+    width: 100%;
+    padding: 12px;
+    background-color: #333;
+    border: none;
+    color: var(--text-color);
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+#searchInput {
+    margin-right: 15px;
+}
+
+#sortCriteria {
+    width: 150px;
+    margin-right: 15px;
+}
+
+/* Spacing and aligning the search and sort bars */
+.mb-4.d-flex.justify-content-center {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+
+/* For mobile responsiveness */
+@media (max-width: 768px) {
+    .fa-star {
+        font-size: 1.5rem;
+    }
+
+    form {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navbar a {
+        margin-bottom: 10px;
+    }
+
+    .table-container {
+        overflow-x: auto;
+    }
+
+    .table {
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .cards-container {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    p {
+        font-size: 0.9rem;
+    }
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Welcome to the Movie Journal{% endblock %}
+
+{% block content %}
+
+<!-- Landing Page -->
+<div class="container mt-4">
+    <h1>Welcome to the Movie Journal</h1>
+    <p>Log in to access your movie collection and manage your watch list.</p> <br>
+
+    <div class="d-flex gap-3">
+        <a href="{{ url_for('login') }}" class="btn btn-custom-blue">Log In</a>
+        <a href="{{ url_for('signup') }}" class="btn btn-custom">Sign Up</a>
+    </div>
+</div>
+{% endblock %}
