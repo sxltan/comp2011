@@ -54,6 +54,11 @@ p {
     text-align: center;
 }
 
+img {
+    max-width: 100%; 
+    height: auto;
+}
+
 footer {
     text-align: center;
     margin-top: 20px;
@@ -552,7 +557,7 @@ footer {
     overflow: hidden;
     margin: 20px 0;
     width: 100%;
-    table-layout: fixed; /* Equal column width for a consistent look */
+    table-layout: fixed;
 }
 
 .table-container, .table, .table td, .table th {
@@ -561,7 +566,7 @@ footer {
 
 
 .table th, .table td {
-    overflow-wrap: break-word; /* Ensure text wraps within cells */
+    overflow-wrap: break-word;
     font-size: 0.9rem;
     padding: 12px;
     text-align: center;
@@ -577,59 +582,53 @@ footer {
 
 /* Container for Scrollable Table */
 .table-container {
-    overflow-x: auto; /* Enable horizontal scrolling */
-    -webkit-overflow-scrolling: touch; /* Smooth scrolling for iOS */
-    padding: 0 15px; /* Add padding to prevent content cutoff */
+    overflow-x: auto; 
+    -webkit-overflow-scrolling: touch;
+    padding: 0 15px; 
 }
 
 /* Responsive Styles for Mobile Screens */
 @media only screen and (max-width: 760px) {
-    /* Transform Table into Block Layout */
     .table, thead, tbody, th, td, tr {
         display: block;
     }
 
-    /* Hide Table Headers */
     thead tr {
         position: absolute;
         top: -9999px;
         left: -9999px;
     }
 
-    /* Add Margin Between Rows */
     tr {
         margin: 0 0 1rem 0;
     }
 
-    /* Style Odd Rows Differently */
     tr:nth-child(odd) {
-        background: #1A1A1A;
+        background: #212121;
     }
 
     tr:nth-child(even) {
         background-color: #333333;
     }
 
-    /* Style Table Cells */
     td {
         border: none;
         border-bottom: 1px solid #2E323A;
         position: relative;
-        padding-left: 50%; /* Indent content for label space */
-        text-align: left; /* Align text to the left */
+        padding-left: 50%; 
+        text-align: left; 
         color: var(--text-color) !important;
     }
 
-    /* Add Labels for Each Cell */
     td:before {
         position: absolute;
         top: 0;
         left: 6px;
-        width: 45%; /* Reserve space for labels */
+        width: 45%; 
         font-weight: bold;
         color: var(--secondary-color);
         white-space: nowrap;
-        content: attr(data-label); /* Use data-label attribute for labels */
+        content: attr(data-label); 
     }
 }
 
@@ -658,7 +657,7 @@ footer {
 /* For Phones and Small Devices (max-width: 576px) */
 @media (max-width: 576px) {
     .cards-container {
-        grid-template-columns: 1fr; /* Single-column layout for cards */
+        grid-template-columns: 1fr; 
         gap: 15px;
     }
 
@@ -674,10 +673,4 @@ footer {
     .navbar {
         padding: 10px;
     }
-}
-
-/* Global Image Styles */
-img {
-    max-width: 100%; 
-    height: auto;
 }
