@@ -305,48 +305,43 @@ footer {
 
 /* Modal container styling */
 .modal-content {
-    background-color: #333 !important; /* Dark background for the modal */
-    color: #fff !important; /* Light text color */
-    border-radius: 8px !important; /* Rounded corners */
-    border: none !important; /* Remove default border */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important; /* Soft shadow */
+    background-color: #333 !important;
+    color: #fff !important;
+    border-radius: 8px !important;
+    border: none !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
   }
   
-  /* Modal header styling */
   .modal-header {
-    border-bottom: 1px solid #444 !important; /* Add subtle border at the bottom */
+    border-bottom: 1px solid #444 !important;
   }
   
-  /* Title in the modal */
   .modal-title {
-    font-size: 1.25rem; /* Adjust title size */
+    font-size: 1.25rem;
   }
   
-  /* Close button (X) styling */
   .modal-header .btn-close {
-    color: #fff !important; /* White "X" button */
-    font-size: 1.25rem !important; /* Increase size */
-    background: none !important; /* Remove default background */
-    border: none !important; /* Remove default border */
-    cursor: pointer; /* Pointer cursor for hover */
+    color: #fff !important;
+    font-size: 1.25rem !important;
+    background: none !important;
+    border: none !important;
+    cursor: pointer;
   }
   
   .modal-header .btn-close:hover {
-    color: #ccc !important; /* Light gray on hover */
+    color: #ccc !important;
   }
   
-  /* Modal body styling */
   .modal-body h6 {
-    border-bottom: 1px solid #444; /* Add separator below headings */
-    padding-bottom: 5px; /* Add spacing below text */
-    margin-top: 15px; /* Add margin between sections */
+    border-bottom: 1px solid #444;
+    padding-bottom: 5px;
+    margin-top: 15px;
   }
   
-  /* Adjust the modal size and alignment */
   .modal-dialog {
-    margin: auto !important; /* Center the modal */
-    max-width: 500px !important; /* Restrict maximum width */
-    width: 75% !important; /* Responsive size */
+    margin: auto !important;
+    max-width: 500px !important;
+    width: 75% !important;
   }
 
   
