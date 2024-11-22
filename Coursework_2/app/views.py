@@ -8,13 +8,14 @@ from werkzeug.security import generate_password_hash, check_password_hash # noqa
 from flask_login import login_user, logout_user, current_user, login_required
 import requests
 
+# Flask-Admin views
 admin.add_view(ModelView(User, db.session))
 admin.add_view(ModelView(Movie, db.session))
 admin.add_view(ModelView(Like, db.session))
 
+# Constants for TMDb API
 TMDB_API_KEY = 'bcfe172528284610ed6f37ec96a49fff'
 TMDB_API_URL = 'https://api.themoviedb.org/3'
-
 
 # Landing page for when the user is not logged in
 @app.route('/')
