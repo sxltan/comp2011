@@ -19,8 +19,7 @@ app = Flask(__name__)
 app.config.from_object('config')
 
 # Initialize the SQLAlchemy database object with the app
-app.config['SECRET_KEY'] = 'your-secret-key'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///your-database.db'
+app.config.from_object('config')
 db = SQLAlchemy(app)
 
 # Initialize Babel for localization support (optional, if you need it)
@@ -30,6 +29,7 @@ babel = Babel(app, locale_selector=get_locale)
 admin = Admin(app, template_mode='bootstrap4')
 
 # Set up migration object
+db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
 # Initialize login manager
