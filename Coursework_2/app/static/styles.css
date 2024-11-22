@@ -352,6 +352,7 @@ footer {
     overflow: hidden;
     margin: 20px 0;
     width: 100%;
+    min-width: 600px;
 }
 
 .table th {
@@ -373,7 +374,7 @@ footer {
 
 .table-container {
     overflow-x: auto;
-    -webkit-overflow-scrolling: touch; /* Smooth scrolling on mobile devices */
+    -webkit-overflow-scrolling: touch;
 }
 
 .table-container .table {
