@@ -352,6 +352,7 @@ footer {
     overflow: hidden;
     margin: 20px 0;
     width: 100%;
+    min-width: 600px;
 }
 
 .table th {
