@@ -16,7 +16,7 @@
             {% if prompt_tmdb %}
                 {{ form.title(class="form-control", placeholder="Enter the movie title", disabled=True) }}
             {% else %}
-                {{ form.title(class="form-control", placeholder="Enter the movie title") }}
+                {{ form.title(class="form-control", placeholder="Enter the movie title (*)") }}
             {% endif %}
             {% if form.title.errors %}
             <div class="text-danger">{{ form.title.errors[0] }}</div>

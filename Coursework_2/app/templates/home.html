@@ -52,7 +52,7 @@
         <img src="{{ movie.poster_url }}" alt="Poster for {{ movie.title }}" class="movie-poster mb-3" style="width: 100%; height: auto;">
       </a>
       {% else %}
-      <img src="/static/default_poster.jpg" alt="No Poster Available" class="movie-poster mb-3" style="width: 100%; height: auto;">
+      <img src="/static/default_poster.png" alt="No Poster Available" class="movie-poster mb-3" style="width: 256px; height: 354px; object-fit: cover;">
       {% endif %}
 
       <p class="card-text"><strong>Genre:</strong> {{ movie.genre }}</p>
@@ -70,6 +70,8 @@
           {{ movie.user.username }}
         </a>
       </p>
+      <br>
+      <p class="card-text">(Click for the reflection and review)</p>
     </div>
 
     <div class="card-footer d-flex justify-content-between">

@@ -63,7 +63,6 @@ footer {
 }
 
 
-
 /* Navbar styles */
 .navbar {
     background-color: var(--primary-color);
@@ -310,39 +309,39 @@ footer {
     border-radius: 8px !important;
     border: none !important;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
-  }
+}
   
-  .modal-header {
+.modal-header {
     border-bottom: 1px solid #444 !important;
-  }
-  
-  .modal-title {
+}
+
+.modal-title {
     font-size: 1.25rem;
-  }
-  
-  .modal-header .btn-close {
+}
+
+.modal-header .btn-close {
     color: #fff !important;
     font-size: 1.25rem !important;
     background: none !important;
     border: none !important;
     cursor: pointer;
-  }
-  
-  .modal-header .btn-close:hover {
+}
+
+.modal-header .btn-close:hover {
     color: #ccc !important;
-  }
-  
-  .modal-body h6 {
+}
+
+.modal-body h6 {
     border-bottom: 1px solid #444;
     padding-bottom: 5px;
     margin-top: 15px;
-  }
-  
-  .modal-dialog {
+}
+
+.modal-dialog {
     margin: auto !important;
     max-width: 500px !important;
     width: 75% !important;
-  }
+}
 
   
 /* Table and Form styles */
@@ -463,6 +462,14 @@ footer {
     color: var(--text-color);
     margin-bottom: 8px;
     text-align: left;
+}
+
+/* Style for the card footer */
+.card-footer {
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 10px;
 }
 
 .card-actions {
