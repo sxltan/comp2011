@@ -45,7 +45,7 @@ login_manager.login_message = "Please log in to access this page."
 if "PORT" in os.environ:
     app.config["PORT"] = int(os.environ.get("PORT"))
 else:
-    app.config["PORT"] = 5000  # Default to port 5000 for local development
+    app.config["PORT"] = 8000  # Default to port 5000 for local development
 
 # Import views and models (ensure models import `db` from this file)
 from app import views, models  # noqa: F401, E402
