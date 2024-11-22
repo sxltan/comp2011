@@ -555,6 +555,11 @@ footer {
     table-layout: fixed; /* Equal column width for a consistent look */
 }
 
+.table-container, .table, .table td, .table th {
+    color: var(--text-color) !important;
+}
+
+
 .table th, .table td {
     overflow-wrap: break-word; /* Ensure text wraps within cells */
     font-size: 0.9rem;
@@ -601,6 +606,10 @@ footer {
         background: #1A1A1A;
     }
 
+    tr:nth-child(even) {
+        background-color: #333333;
+    }
+
     /* Style Table Cells */
     td {
         border: none;
@@ -608,6 +617,7 @@ footer {
         position: relative;
         padding-left: 50%; /* Indent content for label space */
         text-align: left; /* Align text to the left */
+        color: var(--text-color) !important;
     }
 
     /* Add Labels for Each Cell */
