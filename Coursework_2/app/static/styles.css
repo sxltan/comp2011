@@ -343,44 +343,6 @@ footer {
     width: 75% !important;
 }
 
-  
-/* Table and Form styles */
-.table {
-    background-color: var(--card-background);
-    border-radius: 8px;
-    box-shadow: 0 8px 16px var(--shadow-color);
-    overflow: hidden;
-    margin: 20px 0;
-    width: 100%;
-    min-width: 600px;
-}
-
-.table th {
-    background-color: #444444;
-    color: var(--text-color);
-    text-align: center;
-    padding: 15px;
-    white-space: nowrap;
-    font-weight: 600;
-    font-size: 1.1rem;
-}
-
-.table td {
-    text-align: center;
-    padding: 12px;
-    color: var(--secondary-color);
-    border-bottom: 1px solid #2E323A;
-}
-
-.table-container {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-}
-
-.table-container .table {
-    width: 100%;
-}
-
 
 /* Alert styles */
 .alert {
@@ -582,7 +544,45 @@ footer {
 }
 
 
-/* For tablets and medium devices */
+/* Table and Form Styles */
+.table {
+    background-color: var(--card-background);
+    border-radius: 8px;
+    box-shadow: 0 8px 16px var(--shadow-color);
+    overflow: hidden;
+    margin: 20px 0;
+    width: 100%;
+    min-width: 600px; /* Ensure table doesn't shrink too much on larger screens */
+}
+
+.table th {
+    background-color: #444444;
+    color: var(--text-color);
+    text-align: center;
+    padding: 15px;
+    white-space: nowrap;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.table td {
+    text-align: center;
+    padding: 12px;
+    color: var(--secondary-color);
+    border-bottom: 1px solid #2E323A;
+}
+
+.table-container {
+    overflow-x: auto; /* Allow horizontal scrolling for smaller screens */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling for iOS */
+    padding: 0 15px; /* Add some padding to prevent content cutoff */
+}
+
+.table-container .table {
+    width: 100%; /* Ensure table spans the container */
+}
+
+/* For Tablets and Medium Devices (max-width: 768px) */
 @media (max-width: 768px) {
     .fa-star {
         font-size: 1.5rem;
@@ -600,29 +600,30 @@ footer {
 
     .navbar a {
         margin-bottom: 10px;
-        font-size: 0.9rem; 
+        font-size: 0.9rem;
     }
 
     .table-container {
         overflow-x: auto; 
-        -webkit-overflow-scrolling: touch; 
+        -webkit-overflow-scrolling: touch;
     }
 
     .table {
-        width: 100%;
-        font-size: 0.9rem; 
+        width: 100%; /* Ensure table fits inside the viewport */
+        font-size: 0.9rem; /* Slightly smaller text for medium screens */
     }
 
     .table th,
     .table td {
-        white-space: nowrap; 
+        white-space: nowrap; /* Prevent content from wrapping */
+        padding: 10px; /* Adjust padding for smaller screens */
     }
 }
 
-/* For phones and small devices */
+/* For Phones and Small Devices (max-width: 576px) */
 @media (max-width: 576px) {
     .cards-container {
-        grid-template-columns: 1fr; /
+        grid-template-columns: 1fr; /* Single-column layout for cards */
         gap: 15px;
     }
 
@@ -632,7 +633,7 @@ footer {
     }
 
     p {
-        font-size: 0.9rem; 
+        font-size: 0.9rem;
     }
 
     .navbar {
@@ -640,20 +641,21 @@ footer {
     }
 
     .table {
-        font-size: 0.8rem; 
+        font-size: 0.8rem; /* Smaller text for smaller devices */
     }
 
     .table th,
     .table td {
-        padding: 8px; 
+        padding: 8px; /* Reduce padding for better fit */
     }
 
     .table-container {
-        padding: 0 10px; 
+        overflow-x: auto; /* Allow horizontal scrolling if needed */
+        padding: 0 10px; /* Add horizontal padding for better spacing */
     }
 }
 
-/* Global image styles */
+/* Global Image Styles */
 img {
     max-width: 100%; 
     height: auto;
