@@ -136,3 +136,20 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 3500);
     });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Event listener for showing the review and reflection modal
+    document.querySelectorAll('.view-review-reflection').forEach(link => {
+        link.addEventListener('click', function (event) {
+            event.preventDefault(); // Prevent default link behavior
+
+            const movieId = link.dataset.movieId; // Get the movie ID
+            const modal = document.getElementById(`reviewModal-${movieId}`); // Get the modal element
+
+            if (modal) {
+                const bootstrapModal = new bootstrap.Modal(modal); // Initialize Bootstrap modal
+                bootstrapModal.show(); // Show the modal
+            }
+        });
+    });
+});

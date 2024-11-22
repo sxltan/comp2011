@@ -166,7 +166,7 @@ footer {
     padding: 12px 30px;
     color: #FFFFFF; 
     background-color: transparent; 
-    border: 2px solid rgba(255, 255, 255, 0.5); 
+    border: 2px solid rgba(255, 255, 255, 0.5) !important;
     border-radius: 30px;
     transition: all 0.3s ease; 
     letter-spacing: 2px;
@@ -177,8 +177,8 @@ footer {
 
 .btn-custom:hover {
     color: #000000;
-    background-color: #FFFFFF;
-    border-color: #FFFFFF; 
+    background-color: #FFFFFF !important;
+    border-color: #FFFFFF !important;
     transform: scale(1.05);
     transition: all 0.3s ease;
 }
@@ -283,12 +283,12 @@ footer {
 
 /* Unwatch Button */
 .btn-unwatch {
-    background-color: #ffc107;
-    color: #000;
+    background-color: #e7af06;
+    color: #fff;
 }
 
 .btn-unwatch:hover {
-    background-color: #e0a800;
+    background-color: #bb8d01;
 }
 
 
@@ -302,6 +302,54 @@ footer {
     transform: scale(1.05); 
 }
 
+
+/* Modal container styling */
+.modal-content {
+    background-color: #333 !important; /* Dark background for the modal */
+    color: #fff !important; /* Light text color */
+    border-radius: 8px !important; /* Rounded corners */
+    border: none !important; /* Remove default border */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important; /* Soft shadow */
+  }
+  
+  /* Modal header styling */
+  .modal-header {
+    border-bottom: 1px solid #444 !important; /* Add subtle border at the bottom */
+  }
+  
+  /* Title in the modal */
+  .modal-title {
+    font-size: 1.25rem; /* Adjust title size */
+  }
+  
+  /* Close button (X) styling */
+  .modal-header .btn-close {
+    color: #fff !important; /* White "X" button */
+    font-size: 1.25rem !important; /* Increase size */
+    background: none !important; /* Remove default background */
+    border: none !important; /* Remove default border */
+    cursor: pointer; /* Pointer cursor for hover */
+  }
+  
+  .modal-header .btn-close:hover {
+    color: #ccc !important; /* Light gray on hover */
+  }
+  
+  /* Modal body styling */
+  .modal-body h6 {
+    border-bottom: 1px solid #444; /* Add separator below headings */
+    padding-bottom: 5px; /* Add spacing below text */
+    margin-top: 15px; /* Add margin between sections */
+  }
+  
+  /* Adjust the modal size and alignment */
+  .modal-dialog {
+    margin: auto !important; /* Center the modal */
+    max-width: 500px !important; /* Restrict maximum width */
+    width: 75% !important; /* Responsive size */
+  }
+
+  
 /* Table and Form styles */
 .table {
     background-color: var(--card-background);
@@ -387,7 +435,7 @@ footer {
 .card {
     background-color: #121212; 
     color: var(--text-color); 
-    border: 2px solid rgba(255, 255, 255, 0.2); 
+    border: 2px solid rgba(255, 255, 255, 0.2) !important;
     border-radius: 10px; 
     box-shadow: 0 4px 8px var(--shadow-color); 
     padding: 20px;
@@ -402,8 +450,8 @@ footer {
 
 .card:hover {
     transform: translateY(-5px); 
-    box-shadow: 0 6px 15px rgba(255, 255, 255, 0.2);
-    border-color: rgba(255, 255, 255, 0.5); 
+    box-shadow: 0 6px 15px rgba(255, 255, 255, 0.2) !important;
+    border-color: rgba(255, 255, 255, 0.5) !important;
 }
 
 .card-title {

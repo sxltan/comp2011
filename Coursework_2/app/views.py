@@ -46,9 +46,9 @@ def home():
     elif sort_option == 'title_desc':
         movies = Movie.query.order_by(Movie.title.desc()).all()
     elif sort_option == 'None':
-        movies = Movie.query.all()
+        movies = Movie.query.order_by(Movie.id.desc()).all()
     else:
-        movies = Movie.query.all()
+        movies = Movie.query.order_by(Movie.id.desc()).all()
 
     return render_template('home.html', movies=movies)
 
