@@ -599,33 +599,6 @@ table {
 
 /* For Tablets and Medium Devices (max-width: 768px) */
 @media (max-width: 768px) {
-    .table {
-        font-size: 0.8rem; /* Adjusts font size for readability */
-    }
-
-    .table th, .table td {
-        padding: 8px;
-    }
-}
-
-/* For Phones and Small Devices (max-width: 576px) */
-@media (max-width: 576px) {
-    .table-container {
-        padding: 0; /* Removes extra padding for small screens */
-    }
-
-    .table th, .table td {
-        font-size: 0.75rem; /* Smaller font for compact view */
-        padding: 6px; /* Reduces padding for smaller screens */
-    }
-
-    .table {
-        font-size: 0.7rem; /* Adjust table font size further for small devices */
-    }
-}
-
-/* For Tablets and Medium Devices (max-width: 768px) */
-@media (max-width: 768px) {
     .fa-star {
         font-size: 1.5rem;
     }
@@ -671,4 +644,58 @@ table {
 img {
     max-width: 100%; 
     height: auto;
+}
+
+@media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
+    /* Make the table display like a block for responsiveness */
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+    /* Hide table headers for mobile view */
+    thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    /* Add margin between rows for better readability */
+    tr {
+        margin: 0 0 1rem 0;
+    }
+
+    /* Style odd rows for alternating background */
+    tr:nth-child(odd) {
+        background: #ccc;
+    }
+
+    /* Style table cells for better alignment and spacing */
+    td {
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50%;
+        text-align: left;
+    }
+
+    /* Style the labels that replace table headers */
+    td:before {
+        position: absolute;
+        top: 0;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        font-weight: bold;
+        color: var(--secondary-color);
+    }
+
+    /* Define content for each table column */
+    td:nth-of-type(1):before { content: "Title"; }
+    td:nth-of-type(2):before { content: "Genre"; }
+    td:nth-of-type(3):before { content: "Watch Date"; }
+    td:nth-of-type(4):before { content: "Rating"; }
+    td:nth-of-type(5):before { content: "Review"; }
+    td:nth-of-type(6):before { content: "Reflections"; }
+    td:nth-of-type(7):before { content: "Status"; }
 }
