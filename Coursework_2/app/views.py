@@ -17,6 +17,7 @@ admin.add_view(ModelView(Like, db.session))
 TMDB_API_KEY = 'bcfe172528284610ed6f37ec96a49fff'
 TMDB_API_URL = 'https://api.themoviedb.org/3'
 
+
 # Landing page for when the user is not logged in
 @app.route('/')
 def landing_page():
