@@ -601,7 +601,7 @@ footer {
 
     tr {
         margin: 0 0 1rem 0;
-        border: 2px solid rgba(255, 255, 255, 255, 0.75) !important;
+        border: 2px solid rgba(255, 255, 255, 0.75) !important;
         margin-bottom: 30px !important;
     }
 
