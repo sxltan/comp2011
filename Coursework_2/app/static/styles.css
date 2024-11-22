@@ -544,7 +544,7 @@ footer {
 }
 
 
-/* Table and Form Styles */
+/* Base Table Styles */
 .table {
     background-color: var(--card-background);
     border-radius: 8px;
@@ -552,49 +552,75 @@ footer {
     overflow: hidden;
     margin: 20px 0;
     width: 100%;
-    min-width: 600px;
+    table-layout: fixed; /* Equal column width for a consistent look */
 }
 
-/* Global Table Styles */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    table-layout: fixed; /* Ensures all columns have equal width */
-  }
-  
-  td, th {
-    overflow-wrap: break-word; /* Ensures text wraps within cells */
-    word-wrap: break-word; /* Fallback for older browsers */
-    font-size: 0.8rem; /* Adjust font size for readability */
-    padding: 8px; /* Adds space around cell content */
-    text-align: center; /* Center-aligns text */
-  }
+.table th, .table td {
+    overflow-wrap: break-word; /* Ensure text wraps within cells */
+    font-size: 0.9rem;
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #2E323A;
+}
 
 .table th {
     background-color: #444444;
     color: var(--text-color);
-    text-align: center;
-    padding: 15px;
     white-space: nowrap;
     font-weight: 600;
-    font-size: 1.1rem;
 }
 
-.table td {
-    text-align: center;
-    padding: 12px;
-    color: var(--secondary-color);
-    border-bottom: 1px solid #2E323A;
-}
-
+/* Container for Scrollable Table */
 .table-container {
-    overflow-x: auto; /* Allow horizontal scrolling for smaller screens */
+    overflow-x: auto; /* Enable horizontal scrolling */
     -webkit-overflow-scrolling: touch; /* Smooth scrolling for iOS */
-    padding: 0 15px; /* Add some padding to prevent content cutoff */
+    padding: 0 15px; /* Add padding to prevent content cutoff */
 }
 
-.table-container .table {
-    width: 100%; /* Ensure table spans the container */
+/* Responsive Styles for Mobile Screens */
+@media only screen and (max-width: 760px) {
+    /* Transform Table into Block Layout */
+    .table, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+    /* Hide Table Headers */
+    thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    /* Add Margin Between Rows */
+    tr {
+        margin: 0 0 1rem 0;
+    }
+
+    /* Style Odd Rows Differently */
+    tr:nth-child(odd) {
+        background: #1A1A1A;
+    }
+
+    /* Style Table Cells */
+    td {
+        border: none;
+        border-bottom: 1px solid #2E323A;
+        position: relative;
+        padding-left: 50%; /* Indent content for label space */
+        text-align: left; /* Align text to the left */
+    }
+
+    /* Add Labels for Each Cell */
+    td:before {
+        position: absolute;
+        top: 0;
+        left: 6px;
+        width: 45%; /* Reserve space for labels */
+        font-weight: bold;
+        color: var(--secondary-color);
+        white-space: nowrap;
+        content: attr(data-label); /* Use data-label attribute for labels */
+    }
 }
 
 /* For Tablets and Medium Devices (max-width: 768px) */
@@ -644,58 +670,4 @@ table {
 img {
     max-width: 100%; 
     height: auto;
-}
-
-@media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
-    /* Make the table display like a block for responsiveness */
-    table, thead, tbody, th, td, tr {
-        display: block;
-    }
-
-    /* Hide table headers for mobile view */
-    thead tr {
-        position: absolute;
-        top: -9999px;
-        left: -9999px;
-    }
-
-    /* Add margin between rows for better readability */
-    tr {
-        margin: 0 0 1rem 0;
-    }
-
-    /* Style odd rows for alternating background */
-    tr:nth-child(odd) {
-        background: #ccc;
-    }
-
-    /* Style table cells for better alignment and spacing */
-    td {
-        border: none;
-        border-bottom: 1px solid #eee;
-        position: relative;
-        padding-left: 50%;
-        text-align: left;
-    }
-
-    /* Style the labels that replace table headers */
-    td:before {
-        position: absolute;
-        top: 0;
-        left: 6px;
-        width: 45%;
-        padding-right: 10px;
-        white-space: nowrap;
-        font-weight: bold;
-        color: var(--secondary-color);
-    }
-
-    /* Define content for each table column */
-    td:nth-of-type(1):before { content: "Title"; }
-    td:nth-of-type(2):before { content: "Genre"; }
-    td:nth-of-type(3):before { content: "Watch Date"; }
-    td:nth-of-type(4):before { content: "Rating"; }
-    td:nth-of-type(5):before { content: "Review"; }
-    td:nth-of-type(6):before { content: "Reflections"; }
-    td:nth-of-type(7):before { content: "Status"; }
 }
