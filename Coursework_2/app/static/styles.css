@@ -599,6 +599,33 @@ table {
 
 /* For Tablets and Medium Devices (max-width: 768px) */
 @media (max-width: 768px) {
+    .table {
+        font-size: 0.8rem; /* Adjusts font size for readability */
+    }
+
+    .table th, .table td {
+        padding: 8px;
+    }
+}
+
+/* For Phones and Small Devices (max-width: 576px) */
+@media (max-width: 576px) {
+    .table-container {
+        padding: 0; /* Removes extra padding for small screens */
+    }
+
+    .table th, .table td {
+        font-size: 0.75rem; /* Smaller font for compact view */
+        padding: 6px; /* Reduces padding for smaller screens */
+    }
+
+    .table {
+        font-size: 0.7rem; /* Adjust table font size further for small devices */
+    }
+}
+
+/* For Tablets and Medium Devices (max-width: 768px) */
+@media (max-width: 768px) {
     .fa-star {
         font-size: 1.5rem;
     }
@@ -616,22 +643,6 @@ table {
     .navbar a {
         margin-bottom: 10px;
         font-size: 0.9rem;
-    }
-
-    .table-container {
-        overflow-x: auto; 
-        -webkit-overflow-scrolling: touch;
-    }
-
-    .table {
-        width: 100%; /* Ensure table fits inside the viewport */
-        font-size: 0.9rem; /* Slightly smaller text for medium screens */
-    }
-
-    .table th,
-    .table td {
-        white-space: nowrap; /* Prevent content from wrapping */
-        padding: 10px; /* Adjust padding for smaller screens */
     }
 }
 
@@ -653,20 +664,6 @@ table {
 
     .navbar {
         padding: 10px;
-    }
-
-    .table {
-        font-size: 0.8rem; /* Smaller text for smaller devices */
-    }
-
-    .table th,
-    .table td {
-        padding: 8px; /* Reduce padding for better fit */
-    }
-
-    .table-container {
-        overflow-x: auto; /* Allow horizontal scrolling if needed */
-        padding: 0 10px; /* Add horizontal padding for better spacing */
     }
 }
 
