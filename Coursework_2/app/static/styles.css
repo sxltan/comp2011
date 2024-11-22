@@ -378,7 +378,7 @@ footer {
 }
 
 .table-container .table {
-    width: 100%; /* Ensure table occupies the full width of its container */
+    width: 100%;
 }
 
 
@@ -582,7 +582,7 @@ footer {
 }
 
 
-/* For mobile responsiveness */
+/* For tablets and medium devices */
 @media (max-width: 768px) {
     .fa-star {
         font-size: 1.5rem;
@@ -600,33 +600,61 @@ footer {
 
     .navbar a {
         margin-bottom: 10px;
+        font-size: 0.9rem; 
     }
 
     .table-container {
-        overflow-x: auto;
+        overflow-x: auto; 
+        -webkit-overflow-scrolling: touch; 
     }
 
     .table {
         width: 100%;
+        font-size: 0.9rem; 
+    }
+
+    .table th,
+    .table td {
+        white-space: nowrap; 
     }
 }
 
+/* For phones and small devices */
 @media (max-width: 576px) {
     .cards-container {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /
         gap: 15px;
     }
 
     h1 {
         font-size: 2rem;
+        text-align: center;
     }
 
     p {
-        font-size: 0.9rem;
+        font-size: 0.9rem; 
+    }
+
+    .navbar {
+        padding: 10px;
+    }
+
+    .table {
+        font-size: 0.8rem; 
+    }
+
+    .table th,
+    .table td {
+        padding: 8px; 
+    }
+
+    .table-container {
+        padding: 0 10px; 
     }
 }
 
+/* Global image styles */
 img {
-    max-width: 100%;
+    max-width: 100%; 
     height: auto;
 }
