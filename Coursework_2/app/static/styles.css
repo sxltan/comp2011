@@ -552,8 +552,23 @@ footer {
     overflow: hidden;
     margin: 20px 0;
     width: 100%;
-    min-width: 600px; /* Ensure table doesn't shrink too much on larger screens */
+    min-width: 600px;
 }
+
+/* Global Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed; /* Ensures all columns have equal width */
+  }
+  
+  td, th {
+    overflow-wrap: break-word; /* Ensures text wraps within cells */
+    word-wrap: break-word; /* Fallback for older browsers */
+    font-size: 0.8rem; /* Adjust font size for readability */
+    padding: 8px; /* Adds space around cell content */
+    text-align: center; /* Center-aligns text */
+  }
 
 .table th {
     background-color: #444444;
