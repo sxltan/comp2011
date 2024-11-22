@@ -601,8 +601,8 @@ footer {
 
     tr {
         margin: 0 0 1rem 0;
-        border: 2px solid var(--secondary-color) !important;
-        margin-bottom: 10px !important;
+        border: 2px solid rgba(255, 255, 255, 255, 0.75) !important;
+        margin-bottom: 30px !important;
     }
 
     tr:nth-child(odd) {
@@ -613,8 +613,7 @@ footer {
         background-color: #333333;
     }
 
-    td {
-        border: 1px solid var(--secondary-color) !important; 
+    td { 
         padding: 12px !important;
         position: relative;
         padding-left: 50%; 
