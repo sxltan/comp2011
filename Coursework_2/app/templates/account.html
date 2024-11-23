@@ -16,7 +16,7 @@
           <th>Rating</th>
           <th>Review</th>
           <th>Reflections</th>
-          <th>Status</th>
+          <th>Recommend?</th>
         </tr>
       </thead>
       <tbody>
@@ -28,7 +28,7 @@
           <td>{{ movie.rating }}/5</td>
           <td>{{ movie.review }}</td>
           <td>{{ movie.reflections }}</td>
-          <td>{{ 'Watched' if movie.watched else 'Unwatched' }}</td>
+          <td>{{ 'Yes' if movie.recommend else 'No' }}</td>
         </tr>
         {% endfor %}
       </tbody>

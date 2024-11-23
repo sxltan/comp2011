@@ -37,6 +37,7 @@ class Movie(db.Model):
     review = db.Column(db.String(500))
     reflections = db.Column(db.String(500))
     watched = db.Column(db.Boolean, default=False)
+    recommend = db.Column(db.Boolean, default=False)
 
     # TMDb data: We only need poster_url for now
     tmdb_id = db.Column(db.Integer, unique=True, nullable=True)

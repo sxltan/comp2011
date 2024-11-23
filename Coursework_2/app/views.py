@@ -94,7 +94,7 @@ def add_movie():
                             rating=int(form.rating.data) if form.rating.data else 0,
                             review=form.review.data,
                             reflections=form.reflections.data,
-                            watched=form.watched.data,
+                            recommend=form.recommend.data,
                             user_id=current_user.id
                         )
                         db.session.add(new_movie)
@@ -119,7 +119,7 @@ def add_movie():
             rating=int(form.rating.data) if form.rating.data else 0,
             review=form.review.data,
             reflections=form.reflections.data,
-            watched=form.watched.data,
+            recommend=form.recommend.data,
             user_id=current_user.id
         )
         db.session.add(new_movie)
@@ -129,22 +129,6 @@ def add_movie():
         return redirect(url_for('home'))
 
     return render_template('add_movie.html', form=form, prompt_tmdb=prompt_tmdb, error_message=error_message)
-
-
-# Route for viewing unwatched movies
-@app.route('/unwatched')
-@login_required
-def view_unwatched():
-    unwatched_movies = Movie.query.filter_by(watched=False, user_id=current_user.id).all()
-    return render_template('home.html', movies=unwatched_movies)
-
-
-# Route for viewing watched movies
-@app.route('/watched')
-@login_required
-def view_watched():
-    watched_movies = Movie.query.filter_by(watched=True, user_id=current_user.id).all()
-    return render_template('home.html', movies=watched_movies)
 
 
 # Route for marking a movie as watched
@@ -231,7 +215,7 @@ def edit_movie(movie_id):
         movie.rating = int(form.rating.data) if form.rating.data else 0
         movie.review = form.review.data
         movie.reflections = form.reflections.data
-        movie.watched = form.watched.data
+        movie.recommend = form.recommend.data
 
         db.session.commit()
         flash('Movie updated successfully!', 'success')
@@ -356,37 +340,12 @@ def delete_account():
         return redirect(url_for('edit_profile'))
 
 
-# Route for filtering and sorting movies
-@app.route('/filter', methods=['GET', 'POST'])
-@login_required
-def filter_movies():
-    # Only handle the sorting parameter
-    sort_by = request.args.get('sort_by', 'title')
-
-    # Start with a query filtered by the current user
-    query = Movie.query.filter_by(user_id=current_user.id)
-
-    # Apply sorting based on the `sort_by` parameter
-    if sort_by == 'date':
-        query = query.order_by(Movie.watch_date.desc())
-    elif sort_by == 'rating':
-        query = query.order_by(Movie.rating.desc())
-    elif sort_by == 'title':
-        query = query.order_by(Movie.title)
-
-    # Execute the query and fetch results
-    movies = query.all()
-
-    # Return the sorted movies to the template
-    return render_template('home.html', movies=movies)
-
-
 # Route for user profiles
 @app.route('/user/<int:user_id>')
 @login_required
 def user_profile(user_id):
     user = User.query.get_or_404(user_id)
-    movies = Movie.query.filter_by(user_id=user_id).all()
+    movies = Movie.query.filter_by(user_id=user_id).order_by(Movie.id.desc()).all()
     return render_template('user_profile.html', user=user, movies=movies)
 
 

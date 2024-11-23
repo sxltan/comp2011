@@ -24,13 +24,22 @@ class MovieForm(FlaskForm):
         validators=[DataRequired()]
     )
     watch_date = DateField('Watch Date', validators=[DataRequired()])
-    rating = DecimalField('Rating', default=0, validators=[NumberRange(min=0, max=10)], places=1)
-    review = TextAreaField('Review')
-    reflections = TextAreaField('Reflections / Lessons Learned')
-    watched = BooleanField('Watched')
+    rating = DecimalField(
+        'Rating',
+        default=0,
+        validators=[
+            DataRequired(),
+            NumberRange(min=0, max=5, message="Invalid rating.")
+        ],
+        places=1
+    )
+    review = TextAreaField('Review', validators=[DataRequired()])
+    reflections = TextAreaField('Reflections', validators=[DataRequired()])
+    recommend = BooleanField('Recommend?')
     poster_url = StringField('Poster URL')
     submit = SubmitField('Add Movie')
 
+    # Custom validator for watch_date
     def validate_watch_date(form, field):
         if field.data > datetime.date.today():
             raise ValidationError("Watch date cannot be in the future.")
@@ -49,7 +58,7 @@ class SignupForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
-    password2 = PasswordField('Repeat Password', validators=[DataRequired(), EqualTo('password')])
+    password2 = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Sign Up')
 
     def validate_username(self, username):

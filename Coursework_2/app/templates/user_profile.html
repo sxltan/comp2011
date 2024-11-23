@@ -16,14 +16,17 @@
 {% if movies %}
 <div class="cards-container">
   {% for movie in movies %}
-  <div class="card shadow-lg">
+  <div class="card shadow-lg" data-toggle="modal" data-target="#reviewModal{{ movie.id }}" style="cursor: pointer;">
     <div class="card-body">
-      <!-- Movie Details -->
       <h5 class="card-title font-weight-bold">{{ movie.title }}</h5>
+
+      <!-- Movie Poster -->
       {% if movie.poster_url %}
-      <img src="{{ movie.poster_url }}" alt="Poster for {{ movie.title }}" class="movie-poster mb-3" style="width: 100%; height: auto;">
+      <a href="{{ movie.tmdb_link }}" target="_blank" onclick="event.stopPropagation();">
+        <img src="{{ movie.poster_url }}" alt="Poster for {{ movie.title }}" class="movie-poster mb-3" style="width: 100%; height: auto;">
+      </a>
       {% else %}
-      <img src="/static/default_poster.jpg" alt="No Poster Available" class="movie-poster mb-3" style="width: 100%; height: auto;">
+      <img src="/static/default_poster.png" alt="No Poster Available" class="movie-poster mb-3" style="width: 256px; height: 354px; object-fit: cover;">
       {% endif %}
 
       <p class="card-text"><strong>Genre:</strong> {{ movie.genre }}</p>
@@ -35,38 +38,59 @@
           {% endfor %}
         </div>
       </p>
-      <p class="card-text"><strong>Review:</strong> {{ movie.review }}</p>
-      <p class="card-text"><strong>Reflections:</strong> {{ movie.reflections }}</p>
-      <p class="card-text"><strong>Status:</strong> {{ 'Watched' if movie.watched else 'Unwatched' }}</p>
+      <p class="card-text"><strong>Recommend:</strong> {{ 'Yes' if movie.recommend else 'No' }}</p>
       <p class="card-text"><strong>Logged by:</strong> 
-        <a href="{{ url_for('user_profile', user_id=movie.user.id) }}" class="text-info">
+        <a href="{{ url_for('user_profile', user_id=movie.user.id) }}" class="text-info" onclick="event.stopPropagation();">
           {{ movie.user.username }}
         </a>
       </p>
+      <br>
+      <p class="card-text">(Click for the reflection and review)</p>
     </div>
 
     <!-- Card Actions -->
+    {% if movie.user.id == current_user.id %}
     <div class="card-footer d-flex justify-content-between">
-      <a href="{{ url_for('edit_movie', movie_id=movie.id) }}" class="btn btn-action btn-edit">Edit</a>
-      <form action="{{ url_for('delete_movie', movie_id=movie.id) }}" method="POST" style="display:inline;">
+      <a href="{{ url_for('edit_movie', movie_id=movie.id) }}" class="btn btn-action btn-edit" onclick="event.stopPropagation();">Edit</a>
+      <form action="{{ url_for('delete_movie', movie_id=movie.id) }}" method="POST" style="display:inline;" onclick="event.stopPropagation();">
           <button type="submit" class="btn btn-action btn-delete" onclick="return confirm('Are you sure?')">Delete</button>
       </form>
       {% if movie.watched %}
-      <a href="{{ url_for('mark_unwatched', movie_id=movie.id) }}" class="btn btn-action btn-unwatch">Unwatch</a>
+      <a href="{{ url_for('mark_unwatched', movie_id=movie.id) }}" class="btn btn-action btn-unwatch" onclick="event.stopPropagation();">Unwatch</a>
       {% else %}
-      <a href="{{ url_for('mark_watched', movie_id=movie.id) }}" class="btn btn-action btn-watch">Watch</a>
+      <a href="{{ url_for('mark_watched', movie_id=movie.id) }}" class="btn btn-action btn-watch" onclick="event.stopPropagation();">Watch</a>
       {% endif %}
     </div>
+    {% endif %}
 
     <!-- Like Button -->
-    <div class="card-footer text-center">
+    <div class="card-footer text-center" onclick="event.stopPropagation();">
         <form method="POST" action="{{ url_for('toggle_like', movie_id=movie.id) }}" class="like-form" data-movie-id="{{ movie.id }}">
-            <button type="submit" class="btn btn-sm {% if movie.is_liked_by(user) %}btn-danger{% else %}btn-outline-danger{% endif %}">
+            <button type="submit" class="btn btn-sm {% if movie.is_liked_by(current_user) %}btn-danger{% else %}btn-outline-danger{% endif %}">
                 <i class="fa fa-heart"></i> <span class="like-count">{{ movie.like_count() }}</span>
             </button>
         </form>
     </div>
+  </div>
 
+  <!-- Modal for Review and Reflections -->
+  <div class="modal fade" id="reviewModal{{ movie.id }}" tabindex="-1" role="dialog" aria-labelledby="reviewModalLabel{{ movie.id }}" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="reviewModalLabel{{ movie.id }}">{{ movie.title }}</h5>
+        </div>
+        <div class="modal-body">
+          <h6><strong>Review:</strong></h6>
+          <p>{{ movie.review if movie.review else 'No review provided.' }}</p>
+          <h6><strong>Reflections:</strong></h6>
+          <p>{{ movie.reflections if movie.reflections else 'No reflections provided.' }}</p>
+        </div>
+        <div class="modal-footer justify-content-center">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
   </div>
   {% endfor %}
 </div>

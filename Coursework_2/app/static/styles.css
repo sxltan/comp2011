@@ -317,19 +317,14 @@ footer {
 }
   
 .modal-header {
-    border-bottom: 1px solid #444 !important;
+    border-bottom: 1px solid #FFF !important;
+    align-items: center;
+    justify-content: center;
+    position: relative;
 }
 
 .modal-title {
     font-size: 1.25rem;
-}
-
-.modal-header .btn-close {
-    color: #fff !important;
-    font-size: 1.25rem !important;
-    background: none !important;
-    border: none !important;
-    cursor: pointer;
 }
 
 .modal-header .btn-close:hover {
@@ -337,7 +332,7 @@ footer {
 }
 
 .modal-body h6 {
-    border-bottom: 1px solid #444;
+    border-bottom: 1px solid #696969;
     padding-bottom: 5px;
     margin-top: 15px;
 }
