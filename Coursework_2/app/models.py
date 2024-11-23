@@ -13,10 +13,10 @@ class User(UserMixin, db.Model):
     password_hash = db.Column(db.String(128))
 
     # Relationship to associate users with their movies
-    movies = db.relationship('Movie', backref='user', lazy=True, cascade='all, delete-orphan')
+    movies = db.relationship('Movie', backref='user', lazy=True, cascade='all, delete-orphan') # noqa
 
     # Relationship for the liked movies (many-to-many)
-    liked_movies = db.relationship('Movie', secondary='like', backref='likers', lazy='dynamic')
+    liked_movies = db.relationship('Movie', secondary='like', backref='likers', lazy='dynamic') # noqa
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
