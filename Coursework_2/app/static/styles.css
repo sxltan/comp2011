@@ -693,15 +693,15 @@ tr:nth-child(even) {
         padding: 10px;
         align-items: center;
         justify-content: center;
-        text-align: center; /* Center-align text */
-        gap: 10px; /* Reduce gap for smaller devices */
+        text-align: center;
+        gap: 10px;
     }
 
     .navbar a {
         display: block;
         margin-bottom: 0;
-        font-size: 0.9rem; /* Slightly smaller font for smaller devices */
+        font-size: 0.9rem;
         text-align: center;
-        padding: 8px 0; /* Add consistent padding */
+        padding: 8px 0;
     }
 }
