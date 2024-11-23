@@ -657,17 +657,19 @@ tr:nth-child(even) {
     }
 
     .navbar {
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-align: center; /* Ensures text is centered */
+        flex-direction: column; /* Stack the items vertically */
+        align-items: center; /* Center-align items horizontally */
+        justify-content: center; /* Center-align items vertically */
+        text-align: center; /* Ensure text inside links is centered */
+        gap: 15px; /* Add uniform spacing between items */
     }
 
     .navbar a {
-        display: block;
-        margin-bottom: 10px;
-        font-size: 1rem;
-        text-align: center; 
+        display: block; /* Make links full-width */
+        margin-bottom: 0; /* Reset margin for consistency */
+        font-size: 1rem; /* Adjust font size for readability */
+        text-align: center; /* Center-align text inside links */
+        padding: 10px 0; /* Add vertical padding for better spacing */
     }
 }
 
@@ -691,13 +693,15 @@ tr:nth-child(even) {
         padding: 10px;
         align-items: center;
         justify-content: center;
-        text-align: center; /* Centers text */
+        text-align: center; /* Center-align text */
+        gap: 10px; /* Reduce gap for smaller devices */
     }
 
     .navbar a {
         display: block;
-        margin-bottom: 10px;
-        font-size: 0.9rem;
+        margin-bottom: 0;
+        font-size: 0.9rem; /* Slightly smaller font for smaller devices */
         text-align: center;
+        padding: 8px 0; /* Add consistent padding */
     }
 }
