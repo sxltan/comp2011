@@ -62,7 +62,7 @@ def add_movie():
     error_message = None  # Initialize error message
 
     if form.validate_on_submit():
-        movie_title = form.title.data  # Get the title from the form
+        movie_title = form.title.data
 
         # Search TMDb for the movie title
         search_url = f'https://api.themoviedb.org/3/search/movie?api_key={TMDB_API_KEY}&query={movie_title}' # noqa
