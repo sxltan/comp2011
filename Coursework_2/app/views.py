@@ -119,8 +119,8 @@ def add_movie():
                         # After adding, redirect to the home page
                         return redirect(url_for('home'))
             else:
-                flash("No results found. Try finding its exact TMDb name "
-                      "(the movie's name may be in its local language).",
+                flash("No exact match found. "
+                      "Check for correct TMDb title in its local language.",
                       "danger")
                 prompt_tmdb = True
         else:
@@ -300,7 +300,7 @@ def login():
             return redirect(url_for('login'))
 
         # Log the user in
-        remember_me = form.remember.data  # Capture "Remember Me" checkbox
+        remember_me = form.remember.data  # "Remember Me" checkbox
         login_user(user, remember=remember_me)
 
         # Flash success message
