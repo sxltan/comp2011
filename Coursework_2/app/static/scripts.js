@@ -17,7 +17,8 @@ function initializeStarDisplay() {
 }
 
 /**
- * Initializes event listeners and dynamic features. */
+ * Initializes event listeners and dynamic features. 
+ */
 document.addEventListener("DOMContentLoaded", function () {
 
     // Event Listener for sorting movies
