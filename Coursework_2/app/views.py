@@ -360,26 +360,36 @@ def edit_profile():
     )
 
 
-# Route for deleting an account
 @app.route('/delete_account', methods=['POST'])
 @login_required
 def delete_account():
-    user = User.query.get(current_user.id)
+    try:
+        user = User.query.get(current_user.id)
 
-    if user:
-        # Delete all movies associated with the user
-        Movie.query.filter_by(user_id=user.id).delete()
+        if user:
+            # Explicitly delete likes associated with the user's movies
+            user_likes = Like.query.filter_by(user_id=user.id).all()
+            for like in user_likes:
+                db.session.delete(like)
 
-        # Delete the user account
-        db.session.delete(user)
-        db.session.commit()
+            # Delete all movies associated with the user
+            Movie.query.filter_by(user_id=user.id).delete()
 
-        flash("Your account and all associated movies have been deleted.",
-              "success")
-        logout_user()
-        return redirect(url_for('signup'))
-    else:
-        flash("Error: Account not found.", "danger")
+            # Delete the user account
+            db.session.delete(user)
+            db.session.commit()
+
+            flash("Your account and all associated movies have been deleted.",
+                  "success")
+            logout_user()
+            return redirect(url_for('landing_page'))
+        else:
+            flash("Error: Account not found.", "danger")
+            return redirect(url_for('edit_profile'))
+    except Exception as e:
+        db.session.rollback()
+        flash("An error occurred while deleting your account.", "danger")
+        app.logger.error(f"Error deleting account: {e}")
         return redirect(url_for('edit_profile'))
 
 
