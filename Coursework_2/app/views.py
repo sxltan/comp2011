@@ -65,7 +65,10 @@ def add_movie():
         movie_title = form.title.data
 
         # Search TMDb for the movie title
-        search_url = f'https://api.themoviedb.org/3/search/movie?api_key={TMDB_API_KEY}&query={movie_title}' # noqa
+        search_url = (
+            f'https://api.themoviedb.org/3/search/movie?api_key={TMDB_API_KEY}'
+            f'&query={movie_title}'
+        )
         response = requests.get(search_url)
 
         if response.status_code == 200:
@@ -78,12 +81,24 @@ def add_movie():
                         tmdb_id = movie['id']
 
                         # Check if this movie already exists for this user
-                        existing_movie = Movie.query.filter_by(user_id=current_user.id, tmdb_id=tmdb_id).first() # noqa
+                        existing_movie = Movie.query.filter_by(
+                            user_id=current_user.id, tmdb_id=tmdb_id
+                        ).first()
                         if existing_movie:
-                            flash("This movie already exists in your collection.", "danger") # noqa
-                            return render_template('add_movie.html', form=form, prompt_tmdb=prompt_tmdb, error_message=error_message) # noqa
+                            flash("This movie already exists in your journal.",
+                                  "danger")
+                            return render_template(
+                                'add_movie.html',
+                                form=form,
+                                prompt_tmdb=prompt_tmdb,
+                                error_message=error_message
+                            )
 
-                        poster_url = f'https://image.tmdb.org/t/p/w500{movie["poster_path"]}' if movie.get('poster_path') else None # noqa
+                        poster_url = (
+                            f'https://image.tmdb.org/t/p/w500'
+                            f'{movie["poster_path"]}'
+                            if movie.get('poster_path') else None
+                        )
 
                         new_movie = Movie(
                             title=movie_title,
@@ -91,7 +106,8 @@ def add_movie():
                             poster_url=poster_url,
                             genre=form.genre.data,
                             watch_date=form.watch_date.data,
-                            rating=int(form.rating.data) if form.rating.data else 0, # noqa
+                            rating=int(form.rating.data) if form.rating.data
+                            else 0,
                             review=form.review.data,
                             reflections=form.reflections.data,
                             recommend=form.recommend.data,
@@ -103,10 +119,13 @@ def add_movie():
                         # After adding, redirect to the home page
                         return redirect(url_for('home'))
             else:
-                flash("No results found for the movie title. Try finding its exact TMDb name (the movie's name may be in its local language).", "danger") # noqa
+                flash("No results found. Try finding its exact TMDb name "
+                      "(the movie's name may be in its local language).",
+                      "danger")
                 prompt_tmdb = True
         else:
-            flash(f"Failed to retrieve movie data from TMDb. Status Code: {response.status_code}", "danger") # noqa
+            flash(f"Failed to retrieve movie data from TMDb. Status Code: "
+                  f"{response.status_code}", "danger")
             prompt_tmdb = True
 
         # If movie is not found, proceed without poster URL
@@ -128,7 +147,12 @@ def add_movie():
         # After adding, redirect to the home page
         return redirect(url_for('home'))
 
-    return render_template('add_movie.html', form=form, prompt_tmdb=prompt_tmdb, error_message=error_message) # noqa
+    return render_template(
+        'add_movie.html',
+        form=form,
+        prompt_tmdb=prompt_tmdb,
+        error_message=error_message
+    )
 
 
 # Route for marking a movie as watched
@@ -185,7 +209,10 @@ def edit_movie(movie_id):
 
         # If the title is changed, search TMDb for the new title
         if new_title.lower() != movie.title.lower():
-            search_url = f'https://api.themoviedb.org/3/search/movie?api_key={TMDB_API_KEY}&query={new_title}' # noqa
+            search_url = (
+                f'https://api.themoviedb.org/3/search/movie?api_key={TMDB_API_KEY}' # noqa (can't shorten further)
+                f'&query={new_title}'
+            )
             response = requests.get(search_url)
 
             if response.status_code == 200:
@@ -193,19 +220,27 @@ def edit_movie(movie_id):
 
                 if 'results' in movie_data and movie_data['results']:
                     for tmdb_movie in movie_data['results']:
-                        if tmdb_movie['original_title'].lower() == new_title.lower(): # noqa
+                        if (tmdb_movie['original_title'].lower() ==
+                                new_title.lower()):
                             # Update movie details with TMDb data
                             movie.tmdb_id = tmdb_movie['id']
-                            movie.poster_url = f'https://image.tmdb.org/t/p/w500{tmdb_movie["poster_path"]}' if tmdb_movie.get('poster_path') else None # noqa
+                            movie.poster_url = (
+                                f'https://image.tmdb.org/t/p/w500'
+                                f'{tmdb_movie["poster_path"]}'
+                                if tmdb_movie.get('poster_path') else None
+                            )
                             break
                     else:
-                        flash("No exact match found on TMDb. Updating details without changing poster.", "warning") # noqa
+                        flash("No exact match found on TMDb. Updating details "
+                              "without changing poster.", "warning")
                         movie.poster_url = None
                 else:
-                    flash("No results found on TMDb. Updating details without changing poster.", "warning") # noqa
+                    flash("No results found on TMDb. Updating details "
+                          "without changing poster.", "warning")
                     movie.poster_url = None
             else:
-                flash(f"Failed to retrieve movie data from TMDb. Status Code: {response.status_code}", "danger") # noqa
+                flash(f"Failed to retrieve movie data from TMDb. "
+                      f"Status Code: {response.status_code}", "danger")
                 movie.poster_url = None
 
         # Update other fields from the form
@@ -300,9 +335,12 @@ def edit_profile():
 
     if form.validate_on_submit():
         # Validate password confirmation
-        if form.password.data and form.password.data != form.confirm_password.data: # noqa
+        if (form.password.data and
+                form.password.data != form.confirm_password.data):
             flash('Passwords do not match!', 'danger')
-            return render_template('edit_profile.html', form=form, delete_form=delete_form) # noqa
+            return render_template(
+                'edit_profile.html', form=form, delete_form=delete_form
+            )
 
         # Update profile details
         current_user.username = form.username.data
@@ -315,7 +353,11 @@ def edit_profile():
         return redirect(url_for('account'))
 
     # Render the form on GET request or failed validation
-    return render_template('edit_profile.html', form=form, delete_form=delete_form) # noqa
+    return render_template(
+        'edit_profile.html',
+        form=form,
+        delete_form=delete_form
+    )
 
 
 # Route for deleting an account
@@ -332,7 +374,8 @@ def delete_account():
         db.session.delete(user)
         db.session.commit()
 
-        flash("Your account and all associated movies have been deleted.", "success") # noqa
+        flash("Your account and all associated movies have been deleted.",
+              "success")
         logout_user()
         return redirect(url_for('signup'))
     else:
@@ -345,7 +388,10 @@ def delete_account():
 @login_required
 def user_profile(user_id):
     user = User.query.get_or_404(user_id)
-    movies = Movie.query.filter_by(user_id=user_id).order_by(Movie.id.desc()).all() # noqa
+    movies = (Movie.query
+              .filter_by(user_id=user_id)
+              .order_by(Movie.id.desc())
+              .all())
     return render_template('user_profile.html', user=user, movies=movies)
 
 
@@ -356,7 +402,9 @@ def toggle_like(movie_id):
     movie = Movie.query.get_or_404(movie_id)
 
     # Check if the user has already liked the movie
-    existing_like = Like.query.filter_by(movie_id=movie_id, user_id=current_user.id).first() # noqa
+    existing_like = Like.query.filter_by(
+        movie_id=movie_id, user_id=current_user.id
+    ).first()
 
     if existing_like:
         # If the user has liked the movie, remove the like
