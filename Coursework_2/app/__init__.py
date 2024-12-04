@@ -4,7 +4,7 @@ from flask import Flask, session, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
-import os # noqa
+import os # noqa (imports needed for app to run)
 
 
 def get_locale():
@@ -37,7 +37,7 @@ login_manager.login_view = 'login'
 login_manager.login_message = "Please log in to access this page."
 
 # Import views and models (ensure models import `db` from this file)
-from app import views, models  # noqa: F401, E402
+from app import views, models  # noqa (imports needed for app to run)
 
 
 # User loader callback for Flask-Login

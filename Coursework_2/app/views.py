@@ -4,7 +4,7 @@ from app import admin, app, db
 from app.forms import MovieForm, SignupForm, LoginForm
 from app.forms import EditProfileForm, DeleteAccountForm
 from app.models import Movie, User, Like
-from werkzeug.security import generate_password_hash, check_password_hash # noqa
+from werkzeug.security import generate_password_hash, check_password_hash # noqa (imports needed for app to run)
 from flask_login import login_user, logout_user, current_user, login_required
 import requests
 
